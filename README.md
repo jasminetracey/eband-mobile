@@ -2,8 +2,8 @@
 
 Eband mobile application.
 
-![](screenshots/login.png)
-![](screenshots/register.png)
+<img src="screenshots/login.png" width="250"/>
+<img src="screenshots/register.png" width="250"/>
 
 ## Getting Started
 
