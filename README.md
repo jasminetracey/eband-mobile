@@ -2,6 +2,9 @@
 
 Eband mobile application.
 
+![](screenshots/login.png)
+![](screenshots/register.png)
+
 ## Getting Started
 
 ### Step 1:
