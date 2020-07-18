@@ -1,16 +1,40 @@
-# eband
+# Eband Mobile
 
-A new Flutter project.
+Eband mobile application.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Step 1:
 
-A few resources to get you started if this is your first Flutter project:
+Download or clone this repo by using the following link:
+[https://github.com/jasminetracey/eband-mobile](https://github.com/jasminetracey/eband-mobile)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Step 2: Running the project with Firebase
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To use this project with Firebase authentication, some configuration steps are required.
+
+- Create a new project with the Firebase console.
+- Add iOS and Android apps in the Firebase project settings.
+- On Android, use `com.eband.app` as the package name.
+- then, [download and copy](https://firebase.google.com/docs/flutter/setup#configure_an_android_app) `google-services.json` into `android/app`.
+- On iOS, use `com.eband.app` as the bundle ID.
+- then, [download and copy](https://firebase.google.com/docs/flutter/setup#configure_an_ios_app) `GoogleService-Info.plist` into `iOS/Runner`, and add it to the Runner target in Xcode.
+
+See this document for full instructions:
+
+- [https://firebase.google.com/docs/flutter/setup](https://firebase.google.com/docs/flutter/setup)
+
+### Step 3:
+
+Go to the project root and execute the following command to get all dependencies packages:
+`flutter pub get`
+
+### Step 4:
+
+Done. Try launch the app using emulator or your preferred physical test device. For first time user, you need to create a new account from the app.
+
+## Third Party Libraries Dependencies:
+
+- [Provider](https://github.com/rrousselGit/provider)
+- [Firebase Auth](https://pub.dev/packages/firebase_auth)
+- [Cloud Firestore](https://pub.dev/packages/cloud_firestore)
