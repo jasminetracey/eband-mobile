@@ -161,6 +161,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child: Text(
                             'Sign In',
                             style: TextStyle(
+                              color: AppColors.primaryColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

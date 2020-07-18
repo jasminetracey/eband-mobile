@@ -4,8 +4,12 @@ import 'package:eband/router.dart';
 import 'package:eband/screens/components/custom_app_bar.dart';
 import 'package:eband/screens/components/date_time_picker.dart';
 import 'package:eband/screens/components/platform_exception_alert_dialog.dart';
+import 'package:eband/screens/components/rounded_button.dart';
+import 'package:eband/utils/app_colors.dart';
 import 'package:eband/utils/app_helpers.dart';
 import 'package:eband/services/firestore_database.dart';
+import 'package:eband/utils/app_text_styles.dart';
+import 'package:eband/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -101,33 +105,52 @@ class _AddGeneralInfoScreenState extends State<AddGeneralInfoScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 verticalSpaceTiny(context),
-                const Text('General Info'),
+                const Text(
+                  'General Info',
+                  style: AppTextStyles.headingTextPrimary,
+                ),
                 verticalSpaceTiny(context),
                 const Text(
                   'Add specific details about your event in order for patrons to know why they should attend. Be as creative as you can.',
+                  style: AppTextStyles.bodyText,
                 ),
                 verticalSpaceSmall(context),
-                const Text('Event Title'),
+                const Text(
+                  'Event Title',
+                  style: AppTextStyles.subheadingTextPrimary,
+                ),
+                verticalSpaceTiny(context),
                 TextFormField(
                   onSaved: (value) => _name = value,
+                  validator: Validators.validateName,
                   keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     hintText: 'Enter event name',
                   ),
                 ),
                 verticalSpaceSmall(context),
-                const Text('Type'),
+                const Text(
+                  'Type',
+                  style: AppTextStyles.subheadingTextPrimary,
+                ),
+                verticalSpaceTiny(context),
                 TextFormField(
                   onSaved: (value) => _type = value,
+                  validator: Validators.validateType,
                   keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     hintText: 'Select event type',
                   ),
                 ),
                 verticalSpaceSmall(context),
-                const Text('Location'),
+                const Text(
+                  'Location',
+                  style: AppTextStyles.subheadingTextPrimary,
+                ),
+                verticalSpaceTiny(context),
                 TextFormField(
                   onSaved: (value) => _venue = value,
+                  validator: Validators.validateVenue,
                   keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     hintText: 'Default Venue',
@@ -136,13 +159,18 @@ class _AddGeneralInfoScreenState extends State<AddGeneralInfoScreen> {
                 verticalSpaceTiny(context),
                 TextFormField(
                   onSaved: (value) => _address = value,
+                  validator: Validators.validateAddress,
                   keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     hintText: 'Enter event address',
                   ),
                 ),
                 verticalSpaceSmall(context),
-                const Text('Date & Time'),
+                const Text(
+                  'Date & Time',
+                  style: AppTextStyles.subheadingTextPrimary,
+                ),
+                verticalSpaceTiny(context),
                 DateTimePicker(
                   labelText: 'Start',
                   selectedDate: _startDate,
@@ -162,24 +190,20 @@ class _AddGeneralInfoScreenState extends State<AddGeneralInfoScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    FlatButton(
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      padding: const EdgeInsets.all(8.0),
-                      onPressed: _submit,
-                      child: const Text(
-                        'Save & Continue',
-                        style: TextStyle(fontSize: 20.0),
+                    Container(
+                      width: screenWidth(context) * 0.45,
+                      child: RoundedButton(
+                        text: 'Save & Continue',
+                        onPressed: _submit,
                       ),
                     ),
-                    FlatButton(
-                      color: Colors.grey,
-                      textColor: Colors.white,
-                      padding: const EdgeInsets.all(8.0),
-                      onPressed: () => Navigator.pop(context),
-                      child: const Text(
-                        'Cancel',
-                        style: TextStyle(fontSize: 20.0),
+                    Container(
+                      width: screenWidth(context) * 0.3,
+                      child: RoundedButton(
+                        color: AppColors.iconColor,
+                        textColor: AppColors.textColor,
+                        text: 'Cancel',
+                        onPressed: () => Navigator.pop(context),
                       ),
                     ),
                   ],

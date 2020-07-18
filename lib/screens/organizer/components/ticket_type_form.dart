@@ -1,5 +1,6 @@
 import 'package:eband/models/ticket_type.dart';
 import 'package:eband/utils/app_helpers.dart';
+import 'package:eband/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -50,6 +51,7 @@ class _TicketTypeFormState extends State<TicketTypeForm> {
               TextFormField(
                 initialValue: widget.ticketType.name,
                 onSaved: (val) => widget.ticketType.name = val,
+                validator: Validators.validateName,
                 decoration: const InputDecoration(
                   labelText: 'Name',
                   hintText: 'Enter name for ticket type',
@@ -61,6 +63,7 @@ class _TicketTypeFormState extends State<TicketTypeForm> {
                 onSaved: (val) => widget.ticketType.quantity = int.parse(val),
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
+                                    validator: Validators.validateQuantity,
                 decoration: const InputDecoration(
                   labelText: 'Quantity',
                   hintText: 'Number of tickets',
@@ -73,6 +76,7 @@ class _TicketTypeFormState extends State<TicketTypeForm> {
               TextFormField(
                 initialValue: widget.ticketType.cost.toStringAsFixed(2),
                 onSaved: (val) => widget.ticketType.cost = double.parse(val),
+                                validator: Validators.validateCost,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   labelText: 'Price',

@@ -8,8 +8,8 @@ class TicketType {
   TicketType({
     this.id,
     this.name,
-    this.cost,
-    this.quantity,
+    this.cost = 0,
+    this.quantity = 0,
     this.sold = 0,
   });
 

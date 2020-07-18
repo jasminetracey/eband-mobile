@@ -2,7 +2,9 @@ import 'package:eband/models/event.dart';
 import 'package:eband/models/ticket_type.dart';
 import 'package:eband/router.dart';
 import 'package:eband/screens/components/custom_app_bar.dart';
+import 'package:eband/screens/components/rounded_button.dart';
 import 'package:eband/screens/organizer/components/ticket_type_form.dart';
+import 'package:eband/utils/app_colors.dart';
 import 'package:eband/utils/app_helpers.dart';
 import 'package:eband/services/firestore_database.dart';
 import 'package:flutter/material.dart';
@@ -46,40 +48,30 @@ class _AddTicketInfoScreenState extends State<AddTicketInfoScreen> {
                 itemBuilder: (_, i) => tickets[i],
               ),
             ),
-            FlatButton(
-              color: Colors.blue,
-              textColor: Colors.white,
-              padding: const EdgeInsets.all(8.0),
+            RoundedButton(
+              color: AppColors.whiteColor,
+              textColor: AppColors.primaryColor,
               onPressed: onAddForm,
-              child: const Text(
-                'Add Ticket Type +',
-                style: TextStyle(fontSize: 20.0),
-              ),
+              text: 'Add Ticket Type +',
             ),
+            verticalSpaceSmall(context),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                FlatButton(
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  disabledColor: Colors.grey,
-                  disabledTextColor: Colors.black,
-                  padding: const EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  onPressed: _submit,
-                  child: const Text(
-                    'Save & Continue',
-                    style: TextStyle(fontSize: 20.0),
+                Container(
+                  width: screenWidth(context) * 0.45,
+                  child: RoundedButton(
+                    text: 'Save Event',
+                    onPressed: _submit,
                   ),
                 ),
-                FlatButton(
-                  color: Colors.grey,
-                  textColor: Colors.white,
-                  padding: const EdgeInsets.all(8.0),
-                  onPressed: () {},
-                  child: const Text(
-                    'Cancel',
-                    style: TextStyle(fontSize: 20.0),
+                Container(
+                  width: screenWidth(context) * 0.3,
+                  child: RoundedButton(
+                    color: AppColors.iconColor,
+                    textColor: AppColors.textColor,
+                    text: 'Cancel',
+                    onPressed: () => Navigator.pop(context),
                   ),
                 ),
               ],

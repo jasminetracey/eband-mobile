@@ -1,7 +1,9 @@
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:eband/models/event.dart';
 import 'package:eband/screens/components/custom_app_bar.dart';
+import 'package:eband/utils/app_colors.dart';
 import 'package:eband/utils/app_helpers.dart';
+import 'package:eband/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -34,41 +36,79 @@ class _EventManagerScreenState extends State<EventManagerScreen> {
         child: ListView(
           physics: const ClampingScrollPhysics(),
           children: <Widget>[
-            verticalSpaceMedium(context),
-            Text(event.name),
+            ClipRRect(
+              borderRadius:
+                  const BorderRadius.all(Radius.circular(kBorderRadius)),
+              child: AspectRatio(
+                aspectRatio: 2,
+                child: Image.network(
+                  event.imagePath,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
             verticalSpaceSmall(context),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Text(
+              event.name,
+              style: AppTextStyles.headingTextPrimary,
+            ),
+            verticalSpaceSmall(context),
+            Wrap(
               children: event.ticketTypes.map(
                 (ticketType) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(ticketType.name),
-                      RichText(
-                        text: TextSpan(
-                          text: 'Total: ',
-                          style: TextStyle(color: Colors.black),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: '${ticketType.quantity}',
+                  return Container(
+                    width: 120,
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              ticketType.name,
+                              style: AppTextStyles.subheadingText,
+                            ),
+                            verticalSpaceTiny(context),
+                            RichText(
+                              text: TextSpan(
+                                text: 'Total: ',
+                                style: TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: '${ticketType.quantity}',
+                                    style:
+                                        AppTextStyles.bodyTextPrimary.copyWith(
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            RichText(
+                              text: TextSpan(
+                                text: 'Sold: ',
+                                style: TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: '${ticketType.sold}',
+                                    style:
+                                        AppTextStyles.bodyTextPrimary.copyWith(
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
                       ),
-                      RichText(
-                        text: TextSpan(
-                          text: 'Sold: ',
-                          style: TextStyle(color: Colors.black),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: '${ticketType.sold}',
-                            ),
-                          ],
-                        ),
-                      ),
-                      verticalSpaceSmall(context),
-                    ],
+                    ),
                   );
                 },
               ).toList(),

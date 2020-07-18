@@ -1,5 +1,6 @@
 import 'package:eband/router.dart';
 import 'package:eband/screens/screens.dart';
+import 'package:eband/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -22,9 +23,10 @@ class OrganizerTabScreen extends StatelessWidget {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         floatingActionButton: FloatingActionButton(
+          backgroundColor: AppColors.primaryColor,
           child: const Icon(
             Icons.add,
-            color: Colors.white,
+            color: AppColors.whiteColor,
           ),
           onPressed: () =>
               Navigator.pushNamed(context, Routes.organizerAddEventRoute),

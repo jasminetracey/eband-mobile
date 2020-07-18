@@ -4,9 +4,13 @@ import 'package:eband/models/event.dart';
 import 'package:eband/router.dart';
 import 'package:eband/screens/components/custom_app_bar.dart';
 import 'package:eband/screens/components/platform_exception_alert_dialog.dart';
+import 'package:eband/screens/components/rounded_button.dart';
+import 'package:eband/utils/app_colors.dart';
 import 'package:eband/utils/app_helpers.dart';
 import 'package:eband/services/firebase_storage_service.dart';
 import 'package:eband/services/firestore_database.dart';
+import 'package:eband/utils/app_text_styles.dart';
+import 'package:eband/utils/validators.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -41,6 +45,7 @@ class _AddEventDetailScreenState extends State<AddEventDetailScreen> {
 
   Future<void> _submit() async {
     if (_validateAndSaveForm()) {
+      // TODO: Add validation for images
       try {
         final database = Provider.of<FirestoreDatabase>(context, listen: false);
 
@@ -111,13 +116,19 @@ class _AddEventDetailScreenState extends State<AddEventDetailScreen> {
           child: Form(
             key: _formKey,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 verticalSpaceTiny(context),
-                const Text('Main Event Image'),
+                const Text(
+                  'Main Event Image',
+                  style: AppTextStyles.headingTextPrimary,
+                ),
                 verticalSpaceTiny(context),
                 const Text(
-                    'This should be the main flyer or poster for your event. '
-                    'Attendees will see this at the top of the this event’s listing. Ensure it is a high quality image:  2160 x 1080 pixels (2:1) ratio.'),
+                  'This should be the main flyer or poster for your event. '
+                  'Attendees will see this at the top of the this event’s listing. Ensure it is a high quality image:  2160 x 1080 pixels (2:1) ratio.',
+                  style: AppTextStyles.bodyText,
+                ),
                 verticalSpaceSmall(context),
                 Center(
                   child: defaultTargetPlatform == TargetPlatform.android
@@ -147,15 +158,18 @@ class _AddEventDetailScreenState extends State<AddEventDetailScreen> {
                 verticalSpaceMedium(context),
                 const Text(
                   'Description',
+                  style: AppTextStyles.headingTextPrimary,
                 ),
                 verticalSpaceTiny(context),
                 const Text(
                   'Provide more details about your event like schedule, sponsors,'
                   ' or Featured guests.',
+                  style: AppTextStyles.bodyText,
                 ),
                 verticalSpaceSmall(context),
                 TextFormField(
                   onSaved: (value) => _description = value,
+                  validator: Validators.validateDescription,
                   keyboardType: TextInputType.multiline,
                   maxLength: null,
                   maxLines: 5,
@@ -164,27 +178,20 @@ class _AddEventDetailScreenState extends State<AddEventDetailScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    FlatButton(
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      disabledColor: Colors.grey,
-                      disabledTextColor: Colors.black,
-                      padding: const EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      onPressed: _submit,
-                      child: const Text(
-                        'Save & Continue',
-                        style: TextStyle(fontSize: 20.0),
+                    Container(
+                      width: screenWidth(context) * 0.45,
+                      child: RoundedButton(
+                        text: 'Save & Continue',
+                        onPressed: _submit,
                       ),
                     ),
-                    FlatButton(
-                      color: Colors.grey,
-                      textColor: Colors.white,
-                      padding: const EdgeInsets.all(8.0),
-                      onPressed: () {},
-                      child: const Text(
-                        'Cancel',
-                        style: TextStyle(fontSize: 20.0),
+                    Container(
+                      width: screenWidth(context) * 0.3,
+                      child: RoundedButton(
+                        color: AppColors.iconColor,
+                        textColor: AppColors.textColor,
+                        text: 'Cancel',
+                        onPressed: () => Navigator.pop(context),
                       ),
                     ),
                   ],
@@ -248,7 +255,7 @@ class _AddEventDetailScreenState extends State<AddEventDetailScreen> {
             if (_imageFile != null) ...[
               Center(
                 child: AspectRatio(
-                  aspectRatio: 1.5,
+                  aspectRatio: 1.7,
                   child: Image.file(
                     File(_imageFile.path),
                     fit: BoxFit.cover,
