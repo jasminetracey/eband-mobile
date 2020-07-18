@@ -1,14 +1,16 @@
+import 'package:eband/models/wristband.dart';
 import 'package:flutter/foundation.dart';
 
 enum UserType { patron, organizer, merchant }
 
 class User {
-  const User({
+  User({
     @required this.uid,
     this.email,
     this.firstName,
     this.lastName,
     this.userType,
+    this.wristband,
   }) : assert(uid != null, 'User can only be created with a non-null uid');
 
   final String uid;
@@ -16,6 +18,7 @@ class User {
   final String firstName;
   final String lastName;
   final String userType;
+  Wristband wristband;
 
   factory User.fromMap(Map<String, dynamic> data, String documentId) {
     if (data == null) {
@@ -47,12 +50,22 @@ class User {
       return null;
     }
 
+    final dynamic wristband = data['wristband'];
+
     return User(
       uid: uid,
       email: email,
       firstName: firstName,
       lastName: lastName,
       userType: userType,
+      wristband: wristband != null
+          ? Wristband(
+              activated: wristband['activated'],
+              credits: wristband['credits'],
+              address: wristband['address'] ?? '',
+              phoneNumber: wristband['phoneNumber'] ?? '',
+            )
+          : null,
     );
   }
 

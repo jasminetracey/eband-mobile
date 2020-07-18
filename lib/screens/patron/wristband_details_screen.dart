@@ -1,3 +1,4 @@
+import 'package:eband/models/user.dart';
 import 'package:eband/router.dart';
 import 'package:eband/screens/components/custom_app_bar.dart';
 import 'package:eband/screens/components/rounded_button.dart';
@@ -6,10 +7,12 @@ import 'package:eband/utils/app_helpers.dart';
 import 'package:eband/utils/app_images.dart';
 import 'package:eband/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class WristbandDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final User user = Provider.of<User>(context);
     return Scaffold(
       appBar: CustomAppBar('Wristband Details'),
       body: SafeArea(
@@ -48,7 +51,7 @@ class WristbandDetailsScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                           children: <TextSpan>[
                             TextSpan(
-                              text: 'WT2435UBDF',
+                              text: user.uid,
                               style: AppTextStyles.bodyTextPrimary.copyWith(
                                 fontWeight: FontWeight.normal,
                               ),
@@ -64,7 +67,9 @@ class WristbandDetailsScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                           children: <TextSpan>[
                             TextSpan(
-                              text: 'Activated',
+                              text: user.wristband.activated
+                                  ? 'Activated'
+                                  : 'Not Activated',
                               style: AppTextStyles.bodyTextPrimary.copyWith(
                                 fontWeight: FontWeight.normal,
                               ),
@@ -80,7 +85,7 @@ class WristbandDetailsScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                           children: <TextSpan>[
                             TextSpan(
-                              text: '0 Pts',
+                              text: '${user.wristband.credits} Pts',
                               style: AppTextStyles.bodyTextPrimary.copyWith(
                                 fontWeight: FontWeight.normal,
                               ),

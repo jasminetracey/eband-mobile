@@ -1,7 +1,9 @@
+import 'package:eband/models/user.dart';
 import 'package:eband/screens/screens.dart';
 import 'package:eband/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class PatronTabScreen extends StatefulWidget {
   const PatronTabScreen({Key key}) : super(key: key);
@@ -26,6 +28,8 @@ class _PatronTabScreenState extends State<PatronTabScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final User user = Provider.of<User>(context);
+
     return Scaffold(
       body: PageView(
         controller: pageController,
@@ -35,7 +39,8 @@ class _PatronTabScreenState extends State<PatronTabScreen> {
         children: <Widget>[
           UpcomingEventsScreen(),
           PatronEventsScreen(),
-          WristbandDetailsScreen(),
+          if (user.wristband != null) WristbandDetailsScreen(),
+          if (user.wristband == null) WristbandOrderScreen()
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

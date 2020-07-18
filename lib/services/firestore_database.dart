@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eband/models/event.dart';
 import 'package:eband/models/ticket_type.dart';
 import 'package:eband/models/user.dart';
+import 'package:eband/models/wristband.dart';
 import 'package:eband/services/firestore_path.dart';
 import 'package:eband/services/firestore_service.dart';
 import 'package:flutter/foundation.dart';
@@ -43,16 +44,21 @@ class FirestoreDatabase {
     });
   }
 
-  Future<void> patronRegisterPayment(TicketType ticketType, Event event) {
-    Firestore.instance
+  Future<void> patronRegisterPayment(TicketType ticketType, Event event) async {
+    await Firestore.instance
         .collection('users')
         .document(uid)
         .collection('events')
         .document()
-        .setData({
-          'ticketType': ticketType.toJson(),
-          'event': event.toJson()
-        }); // your answer missing **.document()**  before setData
+        .setData({'ticketType': ticketType.toJson(), 'event': event.toJson()},
+            merge: true);
+  }
+
+  Future<void> patronOrderWristband(Wristband wristband) async {
+    await Firestore.instance
+        .collection('users')
+        .document(uid)
+        .setData({'wristband': wristband.toJson()}, merge: true);
   }
 
   Stream<List<Event>> getOrganizerEvents() {

@@ -2,6 +2,7 @@ import 'package:eband/models/event.dart';
 import 'package:eband/models/ticket_type.dart';
 import 'package:eband/router.dart';
 import 'package:eband/screens/components/custom_app_bar.dart';
+import 'package:eband/screens/components/rounded_button.dart';
 import 'package:eband/screens/patron/components/ticket_info.dart';
 import 'package:eband/utils/app_helpers.dart';
 import 'package:eband/utils/app_text_styles.dart';
@@ -111,13 +112,7 @@ class _RegisterEventScreenState extends State<RegisterEventScreen> {
             verticalSpaceSmall(context),
             Container(
               alignment: Alignment.center,
-              child: FlatButton(
-                color: Colors.blue,
-                textColor: Colors.white,
-                disabledColor: Colors.grey,
-                disabledTextColor: Colors.black,
-                padding: const EdgeInsets.all(8.0),
-                splashColor: Colors.blueAccent,
+              child: RoundedButton(
                 onPressed: () => {
                   Navigator.pushNamed(
                     context,
@@ -130,9 +125,7 @@ class _RegisterEventScreenState extends State<RegisterEventScreen> {
                     },
                   )
                 },
-                child: const Text(
-                  'Buy Ticket',
-                ),
+                text: 'Buy Ticket',
               ),
             ),
             verticalSpaceSmall(context),
