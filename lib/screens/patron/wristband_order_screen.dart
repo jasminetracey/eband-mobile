@@ -6,7 +6,6 @@ import 'package:eband/router.dart';
 import 'package:eband/screens/components/custom_app_bar.dart';
 import 'package:eband/screens/components/custom_dialog.dart';
 import 'package:eband/screens/components/rounded_button.dart';
-import 'package:eband/screens/patron/components/payment_method.dart';
 import 'package:eband/services/firestore_database.dart';
 import 'package:eband/utils/app_colors.dart';
 import 'package:eband/utils/app_helpers.dart';

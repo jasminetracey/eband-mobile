@@ -17,14 +17,15 @@ dependencies:
   font_awesome_flutter: ^8.8.1
   image_picker: ^0.6.7+4
   intl: ^0.16.1
+  qr_flutter: ^3.1.0
   barcode_scan: ^3.0.1
   firebase_core: ^0.4.5
   firebase_auth: ^0.16.1
   cloud_firestore: ^0.13.7
-  provider:
   firebase_storage: ^3.1.6
-  shared_preferences:
   firebase_analytics:
+  provider:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:

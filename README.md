@@ -36,8 +36,49 @@ Go to the project root and execute the following command to get all dependencies
 
 Done. Try launch the app using emulator or your preferred physical test device. For first time user, you need to create a new account from the app.
 
-## Third Party Libraries Dependencies:
+## Functionalities
 
-- [Provider](https://github.com/rrousselGit/provider)
-- [Firebase Auth](https://pub.dev/packages/firebase_auth)
-- [Cloud Firestore](https://pub.dev/packages/cloud_firestore)
+- [ ] Internet Connection checks
+- [ ] Image caching
+- [ ] Theme
+
+### Patron
+
+- [x] Login, Registration and Sign Out
+- [ ] Forget Password
+- [ ] Email Confirmation
+- [ ] User profile updating
+- [ ] QR Code generation - save to database maybe
+- [x] List of Upcoming Events
+- [ ] Patron registered events
+- [ ] Patron past events
+- [ ] Event registration
+- [x] Event Payment
+- [ ] Event details - present
+- [ ] Event details - past
+- [x] Wristband Registration and Payment(not actually implemented)
+- [x] Wristband details - qr code
+- [x] Wristband details - details
+- [ ] Wristband details - active events
+- [x] Wristband Activation and De-Activation
+- [ ] Wristband Top Up
+
+### Organizer
+
+- [x] Login, Registration and Sign Out
+- [ ] Forget Password
+- [ ] Email Confirmation
+- [ ] User profile updating
+- [x] List of Organizer's events
+- [ ] List of other organizer's upcoming events
+- [x] Event creation
+- [ ] Event updating
+- [ ] Event deleting
+- [ ] Event Management
+
+### Merchant
+
+- [ ] Login, Registration and Sign Out
+- [ ] Forget Password
+- [ ] Email Confirmation
+- [ ] User profile updating

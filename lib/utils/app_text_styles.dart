@@ -5,19 +5,19 @@ class AppTextStyles {
   static const TextStyle headingText = TextStyle(
     color: AppColors.textColor,
     fontWeight: FontWeight.w600,
-    fontSize: 20,
+    fontSize: 22,
   );
 
   static const TextStyle headingTextPrimary = TextStyle(
     color: AppColors.primaryColor,
     fontWeight: FontWeight.w600,
-    fontSize: 20,
+    fontSize: 22,
   );
 
   static const TextStyle headingTextWhite = TextStyle(
     color: AppColors.whiteColor,
     fontWeight: FontWeight.w600,
-    fontSize: 20,
+    fontSize: 22,
   );
 
   static const TextStyle subheadingText = TextStyle(

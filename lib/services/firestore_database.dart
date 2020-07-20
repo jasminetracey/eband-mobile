@@ -61,6 +61,16 @@ class FirestoreDatabase {
         .setData({'wristband': wristband.toJson()}, merge: true);
   }
 
+  Future<void> patronWristbandStatus(User user) {
+    return _service.setData(
+      path: FirestorePath.user(uid),
+      data: {
+        'wristband': {'activated': !user.wristband.activated}
+      },
+      merge: true,
+    );
+  }
+
   Stream<List<Event>> getOrganizerEvents() {
     final Stream<QuerySnapshot> snapshots = Firestore.instance
         .collection('events')

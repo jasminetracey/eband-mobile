@@ -32,7 +32,7 @@ class Event {
     final int startMilliseconds = data['start'];
     final int endMilliseconds = data['end'];
 
-    List<TicketType> tickets = List<TicketType>.from(
+    final List<TicketType> tickets = List<TicketType>.from(
       data['ticketTypes'].map(
         (dynamic item) {
           return TicketType(

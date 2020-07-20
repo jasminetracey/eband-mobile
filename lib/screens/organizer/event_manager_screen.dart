@@ -62,7 +62,7 @@ class _EventManagerScreenState extends State<EventManagerScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
                               ticketType.name,
@@ -97,6 +97,24 @@ class _EventManagerScreenState extends State<EventManagerScreen> {
                                 children: <TextSpan>[
                                   TextSpan(
                                     text: '${ticketType.sold}',
+                                    style:
+                                        AppTextStyles.bodyTextPrimary.copyWith(
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            RichText(
+                              text: TextSpan(
+                                text: 'Scanned: ',
+                                style: TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: '${ticketType.scanned}',
                                     style:
                                         AppTextStyles.bodyTextPrimary.copyWith(
                                       fontWeight: FontWeight.normal,

@@ -1,3 +1,4 @@
+import 'package:eband/screens/components/rounded_button.dart';
 import 'package:eband/utils/app_colors.dart';
 import 'package:eband/utils/app_helpers.dart';
 import 'package:eband/services/firebase_auth_service.dart';
@@ -18,26 +19,20 @@ class SettingsScreen extends StatelessWidget {
           children: <Widget>[
             ListTile(
               title: const Text('Update Profile'),
-              trailing: FlatButton(
-                color: AppColors.primaryColor,
-                textColor: AppColors.whiteColor,
-                padding: const EdgeInsets.all(8.0),
+              trailing: RoundedButton(
                 onPressed: () {},
-                child: const Text('Update Profile'),
+                text: 'Update Profile',
               ),
             ),
             ListTile(
               title: const Text('Sign Out'),
-              trailing: FlatButton(
-                color: AppColors.primaryColor,
-                textColor: AppColors.whiteColor,
-                padding: const EdgeInsets.all(8.0),
+              trailing: RoundedButton(
                 onPressed: () {
                   final _auth =
                       Provider.of<FirebaseAuthService>(context, listen: false);
                   _auth.signOut();
                 },
-                child: const Text('Sign Out'),
+                text: 'Sign Out',
               ),
             )
           ],

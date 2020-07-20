@@ -1,5 +1,6 @@
 import 'package:eband/models/event.dart';
 import 'package:eband/router.dart';
+import 'package:eband/screens/components/rounded_button.dart';
 import 'package:eband/utils/app_colors.dart';
 import 'package:eband/utils/app_helpers.dart';
 import 'package:eband/utils/app_text_styles.dart';
@@ -73,47 +74,23 @@ class EventCard extends StatelessWidget {
                   ],
                 ),
                 if (!alreadyBought && !past)
-                  FlatButton(
-                    color: Colors.blue,
-                    textColor: Colors.white,
-                    disabledColor: Colors.grey,
-                    disabledTextColor: Colors.black,
-                    padding: const EdgeInsets.all(8.0),
-                    splashColor: Colors.blueAccent,
+                  RoundedButton(
                     onPressed: () => Navigator.pushNamed(
                       context,
                       Routes.patronEventRegisterRoute,
                       arguments: event,
                     ),
-                    child: const Text(
-                      'Buy Ticket',
-                    ),
+                    text: 'Buy Ticket',
                   ),
                 if (alreadyBought && !past)
-                  FlatButton(
-                    color: Colors.blue,
-                    textColor: Colors.white,
-                    disabledColor: Colors.grey,
-                    disabledTextColor: Colors.black,
-                    padding: const EdgeInsets.all(8.0),
-                    splashColor: Colors.blueAccent,
+                  RoundedButton(
                     onPressed: () => {},
-                    child: const Text(
-                      'See Ticket',
-                    ),
+                    text: 'See Ticket',
                   ),
                 if (alreadyBought && past)
-                  FlatButton(
-                    color: Colors.blue,
-                    textColor: Colors.white,
-                    disabledColor: Colors.grey,
-                    disabledTextColor: Colors.black,
-                    padding: const EdgeInsets.all(8.0),
-                    splashColor: Colors.blueAccent,
+                  RoundedButton(
                     onPressed: () {},
-                    child: const Text(
-                      'See Info',
-                    ),
+                    text: 'See Info',
                   ),
               ],
             ),
