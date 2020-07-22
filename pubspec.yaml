@@ -23,9 +23,10 @@ dependencies:
   firebase_auth: ^0.16.1
   cloud_firestore: ^0.13.7
   firebase_storage: ^3.1.6
-  firebase_analytics:
-  provider:
-  shared_preferences:
+  firebase_analytics: ^5.0.16
+  cloud_functions: ^0.5.0
+  provider: ^4.3.1
+  shared_preferences: ^0.5.8
 
 dev_dependencies:
   flutter_test:
