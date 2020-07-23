@@ -1,27 +1,29 @@
 import 'package:eband/models/event.dart';
+import 'package:eband/models/user.dart';
 import 'package:eband/router.dart';
 import 'package:eband/screens/components/rounded_button.dart';
 import 'package:eband/utils/app_colors.dart';
 import 'package:eband/utils/app_helpers.dart';
 import 'package:eband/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EventCard extends StatelessWidget {
   final Event event;
   final bool showImage;
-  final bool alreadyBought;
-  final bool past;
 
   const EventCard({
     Key key,
     this.event,
     this.showImage = false,
-    this.alreadyBought = false,
-    this.past = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final User user = Provider.of<User>(context);
+    final alreadyBought = event.boughtTicket.contains(user.uid);
+    final past = DateTime.now().isAfter(event.end);
+
     return Container(
       width: screenWidth(context) * 0.8,
       decoration: BoxDecoration(

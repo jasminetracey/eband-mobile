@@ -12,6 +12,7 @@ class Event {
   String description;
   final String type;
   List<TicketType> ticketTypes;
+  List<String> boughtTicket;
 
 // TODO: add required fields
   Event({
@@ -26,25 +27,41 @@ class Event {
     this.start,
     this.end,
     this.ticketTypes = const <TicketType>[],
+    this.boughtTicket = const <String>[],
   });
 
   factory Event.fromMap(Map<String, dynamic> data, String documentId) {
     final int startMilliseconds = data['start'];
     final int endMilliseconds = data['end'];
 
-    final List<TicketType> tickets = List<TicketType>.from(
-      data['ticketTypes'].map(
-        (dynamic item) {
-          return TicketType(
-            id: item['id'],
-            name: item['name'],
-            cost: item['cost'].toDouble(),
-            quantity: item['quantity'],
-            sold: item['sold'],
-          );
-        },
-      ),
-    );
+    List<TicketType> tickets = [];
+    List<String> boughtTicket = [];
+
+    if (data.containsKey('ticketTypes')) {
+      tickets = List<TicketType>.from(
+        data['ticketTypes'].map(
+          (dynamic item) {
+            return TicketType(
+              id: item['id'],
+              name: item['name'],
+              cost: item['cost'].toDouble(),
+              quantity: item['quantity'],
+              sold: item['sold'],
+            );
+          },
+        ),
+      );
+    }
+
+    if (data.containsKey('boughtTicket')) {
+      boughtTicket = List<String>.from(
+        data['boughtTicket'].map(
+          (dynamic item) {
+            return item;
+          },
+        ),
+      );
+    }
 
     return Event(
       uid: data['uid'],
@@ -58,6 +75,7 @@ class Event {
       start: DateTime.fromMillisecondsSinceEpoch(startMilliseconds),
       end: DateTime.fromMillisecondsSinceEpoch(endMilliseconds),
       ticketTypes: tickets,
+      boughtTicket: boughtTicket
     );
   }
 

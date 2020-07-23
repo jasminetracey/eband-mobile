@@ -328,7 +328,7 @@ class _WristbandOrderScreenState extends State<WristbandOrderScreen> {
         _formKey.currentState.save();
 
         final database = Provider.of<FirestoreDatabase>(context, listen: false);
-        await database.patronOrderWristband(
+        await database.patronUpdateWristband(
           Wristband(address: _address, phoneNumber: _phone),
         );
 

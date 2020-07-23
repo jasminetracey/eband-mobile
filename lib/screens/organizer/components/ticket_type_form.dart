@@ -61,9 +61,8 @@ class _TicketTypeFormState extends State<TicketTypeForm> {
               TextFormField(
                 initialValue: widget.ticketType.quantity.toString(),
                 onSaved: (val) => widget.ticketType.quantity = int.parse(val),
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
-                                    validator: Validators.validateQuantity,
+                keyboardType: TextInputType.number,
+                validator: Validators.validateQuantity,
                 decoration: const InputDecoration(
                   labelText: 'Quantity',
                   hintText: 'Number of tickets',
@@ -76,7 +75,7 @@ class _TicketTypeFormState extends State<TicketTypeForm> {
               TextFormField(
                 initialValue: widget.ticketType.cost.toStringAsFixed(2),
                 onSaved: (val) => widget.ticketType.cost = double.parse(val),
-                                validator: Validators.validateCost,
+                validator: Validators.validateCost,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   labelText: 'Price',

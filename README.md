@@ -61,7 +61,7 @@ Done. Try launch the app using emulator or your preferred physical test device. 
 - [x] Wristband details - details
 - [ ] Wristband details - active events
 - [x] Wristband Activation and De-Activation
-- [ ] Wristband Top Up
+- [x] Wristband Top Up
 
 ### Organizer
 

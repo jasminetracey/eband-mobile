@@ -38,9 +38,11 @@ class _PatronTabScreenState extends State<PatronTabScreen> {
         },
         children: <Widget>[
           UpcomingEventsScreen(),
-          PatronEventsScreen(),
-          if (user.wristband != null) WristbandDetailsScreen(),
-          if (user.wristband == null) WristbandOrderScreen()
+          // PatronEventsScreen(),
+          if (user.wristband != null)
+            WristbandDetailsScreen(),
+          if (user.wristband == null)
+            WristbandOrderScreen()
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -68,10 +70,10 @@ class _PatronTabScreenState extends State<PatronTabScreen> {
             icon: Icon(Icons.home),
             title: const Text('Home'),
           ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.ticketAlt),
-            title: const Text('My Events'),
-          ),
+          // BottomNavigationBarItem(
+          //   icon: FaIcon(FontAwesomeIcons.ticketAlt),
+          //   title: const Text('My Events'),
+          // ),
           BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.ring),
             title: const Text('Wristbands'),

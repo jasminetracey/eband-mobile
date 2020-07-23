@@ -104,6 +104,18 @@ class Validators {
     }
   }
 
+  static String validateCredits(String value) {
+    if (value.isEmpty) {
+      return 'Credits is required';
+    }
+
+    if (int.parse(value) < 1000) {
+      return 'Minimum credits is 1000';
+    } else {
+      return null;
+    }
+  }
+
   static String validateCost(String value) {
     if (value.isEmpty) {
       return 'Cost is required';

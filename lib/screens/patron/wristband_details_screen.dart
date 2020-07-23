@@ -1,9 +1,7 @@
-import 'package:eband/models/event.dart';
 import 'package:eband/models/user.dart';
 import 'package:eband/router.dart';
 import 'package:eband/screens/components/custom_app_bar.dart';
 import 'package:eband/screens/components/rounded_button.dart';
-import 'package:eband/screens/patron/components/event_card.dart';
 import 'package:eband/services/firestore_database.dart';
 import 'package:eband/utils/app_colors.dart';
 import 'package:eband/utils/app_helpers.dart';
@@ -14,7 +12,6 @@ import 'package:qr_flutter/qr_flutter.dart';
 
 class WristbandDetailsScreen extends StatelessWidget {
   final GlobalKey globalKey = GlobalKey();
-  final List<Event> items = Event.dummyList;
 
   @override
   Widget build(BuildContext context) {
@@ -120,22 +117,21 @@ class WristbandDetailsScreen extends StatelessWidget {
                       ],
                     ),
                     verticalSpaceMedium(context),
-                    Text(
-                      'Active Events:',
-                      style: AppTextStyles.headingTextPrimary,
-                    ),
-                    ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: items.length,
-                      itemBuilder: (context, index) {
-                        return EventCard(
-                          event: items[index],
-                          showImage: false,
-                          alreadyBought: true,
-                        );
-                      },
-                    ),
+                    // Text(
+                    //   'Active Events:',
+                    //   style: AppTextStyles.headingTextPrimary,
+                    // ),
+                    // ListView.builder(
+                    //   physics: const NeverScrollableScrollPhysics(),
+                    //   shrinkWrap: true,
+                    //   itemCount: items.length,
+                    //   itemBuilder: (context, index) {
+                    //     return EventCard(
+                    //       event: items[index],
+                    //       showImage: false,
+                    //     );
+                    //   },
+                    // ),
                   ],
                 )
               ],

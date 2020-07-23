@@ -1,3 +1,4 @@
+import 'package:eband/models/event.dart';
 import 'package:eband/models/wristband.dart';
 import 'package:flutter/foundation.dart';
 

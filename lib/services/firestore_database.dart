@@ -3,9 +3,8 @@ import 'package:eband/models/event.dart';
 import 'package:eband/models/ticket_type.dart';
 import 'package:eband/models/user.dart';
 import 'package:eband/models/wristband.dart';
-import 'package:eband/services/firestore_path.dart';
-import 'package:eband/services/firestore_service.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
 
@@ -14,21 +13,28 @@ class FirestoreDatabase {
       : assert(uid != null, 'Cannot create FirestoreDatabase with null uid');
 
   final String uid;
+  // final _service = FirestoreService.instance;
 
-  final _service = FirestoreService.instance;
+  // Stream<List<Event>> getUpcomingEvents() {
+  //   final Stream<QuerySnapshot> snapshots =
+  //       Firestore.instance.collection('events').where(field).snapshots();
+  // }
 
-  Future<void> createUser(User user) {
-    return _service.setData(
-      path: FirestorePath.user(user.uid),
-      data: user.toJson(),
-    );
-  }
+  Stream<List<Event>> getPatronEvents() {
+    final Stream<QuerySnapshot> snapshots = Firestore.instance
+        .collection('users')
+        .document(uid)
+        .collection('events')
+        .snapshots();
 
-  // Reads the current user info
-  Future getUser() async {
-    final path = FirestorePath.user(uid);
-    final snapshot = await Firestore.instance.document(path).get();
-    return User.fromMap(snapshot.data, snapshot.documentID);
+    return snapshots.map((snapshot) {
+      final result = snapshot.documents
+          .map((snapshot) =>
+              Event.fromMap(snapshot.data['event'], snapshot.documentID))
+          .where((value) => value != null)
+          .toList();
+      return result;
+    });
   }
 
   Stream<List<Event>> getEventsStream() {
@@ -54,21 +60,19 @@ class FirestoreDatabase {
             merge: true);
   }
 
-  Future<void> patronOrderWristband(Wristband wristband) async {
+  Future<void> patronUpdateWristband(Wristband wristband) async {
     await Firestore.instance
         .collection('users')
         .document(uid)
         .setData({'wristband': wristband.toJson()}, merge: true);
   }
 
-  Future<void> patronWristbandStatus(User user) {
-    return _service.setData(
-      path: FirestorePath.user(uid),
-      data: {
-        'wristband': {'activated': !user.wristband.activated}
-      },
-      merge: true,
-    );
+  Future<void> patronWristbandStatus(User user) async {
+    await Firestore.instance.collection('users').document(user.uid).setData({
+      'wristband': {
+        'activated': !user.wristband.activated,
+      }
+    }, merge: true);
   }
 
   Stream<List<Event>> getOrganizerEvents() {
